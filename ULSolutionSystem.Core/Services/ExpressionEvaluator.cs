@@ -10,6 +10,13 @@ namespace ULSolutionSystem.Core.Services
             var valuesRecorded = new Stack<double>();
             var operatorsRecorded = new Stack<char>();
 
+            bool isValid = ExpressionHandlerExtension.ExpressionValidator(expression);
+
+            if (!isValid)
+            {
+                throw new ArgumentException("Invalid expression, it contains negative number or parathensis.");
+            }
+
             var tokens = ExpressionHandlerExtension.TokenFormatter(expression);
 
             foreach (var token in tokens)

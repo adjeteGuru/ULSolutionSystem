@@ -67,5 +67,21 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
             var act = () => systemUnderTest.Evaluate(expression);
             act.Should().Throw<ArgumentException>("Invalid operator found.");
         }
+
+        [Fact]
+        public void Evaluate_WhenAParameterSuppliesCountainsAParenthesis_ThenTheExpectedErrorIsThrown()
+        {
+            var expression = "(4+5)*2";
+            var act = () => systemUnderTest.Evaluate(expression);
+            act.Should().Throw<ArgumentException>("Invalid expression, it contains negative number or parathensis.");
+        }
+
+        [Fact]
+        public void Evaluate_WhenAParameterSuppliesCountainANegativeNumber_ThenTheExpectedErrorIsThrown()
+        {
+            var expression = "3*-2";
+            var act = () => systemUnderTest.Evaluate(expression);
+            act.Should().Throw<ArgumentException>("Invalid expression, it contains negative number or parathensis.");
+        }
     }
 }

@@ -21,7 +21,10 @@ namespace ULSolutionSystem.API.Controllers
             {
                 return BadRequest("Expression cannot be null or empty.");
             }
-            return Ok(default);
+
+            var result = evaluator.Evaluate(expression);
+
+            return Ok(result);
         }
     }
 }

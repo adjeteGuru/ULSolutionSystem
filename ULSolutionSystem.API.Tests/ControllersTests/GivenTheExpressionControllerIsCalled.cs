@@ -63,5 +63,13 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
             var act = systemUnderTest.ProcessEvaluation(expression);
             act.Should().BeOfType<OkObjectResult>();
         }
+
+        [Fact]
+        public void ProcessEvaluation_WhenAParameterIsSupplied_ThenExpressionEvaluatorIsInvoked()
+        {
+            var expression = "1";
+            systemUnderTest.ProcessEvaluation(expression);
+            mockExpressionEvaluator.Verify(x => x.Evaluate(It.IsAny<string>()), Times.Once);
+        }
     }
 }

@@ -1,9 +1,10 @@
 ﻿
 using ULSolutionSystem.Core.Extensions;
+using ULSolutionSystem.Core.Services.Contracts;
 
 namespace ULSolutionSystem.Core.Services
 {
-    public class ExpressionEvaluator
+    public class ExpressionEvaluator : IExpressionEvaluator
     {
         public double Evaluate(string expression)
         {

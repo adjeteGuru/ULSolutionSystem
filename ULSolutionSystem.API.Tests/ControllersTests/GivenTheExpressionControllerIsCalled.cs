@@ -32,6 +32,23 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         }
 
         [Fact]
+        public void ProcessEvaluation_WhenAnEmptyParameterIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultTypeIsReturned()
+        {
+            mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(null);
+            var act = systemUnderTest.ProcessEvaluation("");
+            act.Should().BeOfType<BadRequestObjectResult>();
+        }
+
+        [Fact]
+        public void ProcessEvaluation_WhenAnEmptyParameterIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedErrorMessageIsReturned()
+        {
+            mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(null);
+            var result = systemUnderTest.ProcessEvaluation("");
+            var objectResult = result as BadRequestObjectResult;
+            objectResult.StatusCode.Should().Be(400, "Expression cannot be null or empty.");
+        }
+
+        [Fact]
         public void ProcessEvaluation_WhenAParameterIsSuppliedAndTheExpressionIsEvaluated_ThenNoExceptionIsThrown()
         {
             var expression = "1";

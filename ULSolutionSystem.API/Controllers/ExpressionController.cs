@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ULSolutionSystem.Core.Services.Contracts;
 
 namespace ULSolutionSystem.API.Controllers
 {
@@ -6,9 +7,11 @@ namespace ULSolutionSystem.API.Controllers
     [Route("[controller]")]
     public class ExpressionController : ControllerBase
     {
-        public ExpressionController()
-        {
+        private readonly IExpressionEvaluator evaluator;
 
+        public ExpressionController(IExpressionEvaluator evaluator)
+        {
+            this.evaluator = evaluator ?? throw new ArgumentNullException(nameof(evaluator));
         }
 
         [HttpGet]

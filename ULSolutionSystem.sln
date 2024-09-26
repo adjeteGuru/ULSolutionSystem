@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ULSolutionSystem.API", "ULSolutionSystem.API\ULSolutionSystem.API.csproj", "{0046BD8B-AF31-438F-BFD7-4A247B1D11F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ULSolutionSystem.API", "ULSolutionSystem.API\ULSolutionSystem.API.csproj", "{0046BD8B-AF31-438F-BFD7-4A247B1D11F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ULSolutionSystem.Core", "ULSolutionSystem.Core\ULSolutionSystem.Core.csproj", "{D28A3625-10DC-43D2-ABEA-BEEEB65B8366}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ULSolutionSystem.Core.Tests", "ULSolutionSystem.Core.Tests\ULSolutionSystem.Core.Tests.csproj", "{5AB2D3A6-2F31-41F5-A17B-8E67848537F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0046BD8B-AF31-438F-BFD7-4A247B1D11F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0046BD8B-AF31-438F-BFD7-4A247B1D11F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0046BD8B-AF31-438F-BFD7-4A247B1D11F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D28A3625-10DC-43D2-ABEA-BEEEB65B8366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D28A3625-10DC-43D2-ABEA-BEEEB65B8366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D28A3625-10DC-43D2-ABEA-BEEEB65B8366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D28A3625-10DC-43D2-ABEA-BEEEB65B8366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AB2D3A6-2F31-41F5-A17B-8E67848537F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AB2D3A6-2F31-41F5-A17B-8E67848537F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AB2D3A6-2F31-41F5-A17B-8E67848537F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AB2D3A6-2F31-41F5-A17B-8E67848537F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

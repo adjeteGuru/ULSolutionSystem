@@ -77,9 +77,21 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         {
             var exception = new Exception("Invalid expression.");
             mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Throws(exception);
+            
             var result = systemUnderTest.ProcessEvaluation("4+5/2-1");
             var objectResult = result as BadRequestObjectResult;
             objectResult.Value.Should().Be($"{exception.Message}");
+        }
+
+        [Fact]
+        public void ProcessEvaluation_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe14()
+        {
+            var expression = "4+5*2";
+            mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(14);
+            
+            var result = systemUnderTest.ProcessEvaluation(expression);
+            var objectResult = result as ObjectResult;
+            objectResult.StatusCode.Should().Be(200, "14");
         }
     }
 }

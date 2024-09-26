@@ -1,9 +1,4 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ULSolutionSystem.Core.Services;
 
 namespace ULSolutionSystem.Core.Tests.ServicesTests
@@ -23,6 +18,38 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
             var expression = "1";
             var act = () => systemUnderTest.Evaluate(expression);
             act.Should().NotThrow();
+        }
+
+        [Fact]
+        public void Evaluate_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe2()
+        {
+            var expression = "1+1";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(2);
+        }
+
+        [Fact]
+        public void Evaluate_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe15()
+        {
+            var expression = "1+2*7";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(15);
+        }
+
+        [Fact]
+        public void Evaluate_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe14()
+        {
+            var expression = "4+5*2";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(14);
+        }
+
+        [Fact]
+        public void Evaluate_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe6dot5()
+        {
+            var expression = "4+5/2";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(6.5);
         }
     }
 }

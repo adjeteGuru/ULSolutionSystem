@@ -51,5 +51,21 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
             var result = systemUnderTest.Evaluate(expression);
             result.Should().Be(6.5);
         }
+
+        [Fact]
+        public void Evaluate_WhenAWrongParameterIsSuppliedAndTheExpressionIsEvaluated_ThenExpectedErrorIsReturned()
+        {
+            var expression = "wrong input";
+            var act = () => systemUnderTest.Evaluate(expression);
+            act.Should().Throw<ArgumentException>("Invalid operator found.");
+        }
+
+        [Fact]
+        public void Evaluate_WhenAParameterSuppliesCountainUnknowCharThenTheExpectedErrorIsThrown()
+        {
+            var expression = "1&2*6";
+            var act = () => systemUnderTest.Evaluate(expression);
+            act.Should().Throw<ArgumentException>("Invalid operator found.");
+        }
     }
 }

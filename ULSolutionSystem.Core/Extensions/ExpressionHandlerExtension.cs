@@ -51,6 +51,5 @@ namespace ULSolutionSystem.Core.Extensions
 
             return true;
         }
-
     }
 }

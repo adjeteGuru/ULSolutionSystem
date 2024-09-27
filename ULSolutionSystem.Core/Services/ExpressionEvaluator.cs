@@ -1,5 +1,4 @@
-﻿
-using ULSolutionSystem.Core.Extensions;
+﻿using ULSolutionSystem.Core.Extensions;
 using ULSolutionSystem.Core.Services.Contracts;
 
 namespace ULSolutionSystem.Core.Services

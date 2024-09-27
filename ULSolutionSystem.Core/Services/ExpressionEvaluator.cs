@@ -1,4 +1,4 @@
-﻿
+﻿using ULSolutionSystem.Core.ExceptionHandler;
 using ULSolutionSystem.Core.Extensions;
 using ULSolutionSystem.Core.Services.Contracts;
 
@@ -30,6 +30,11 @@ namespace ULSolutionSystem.Core.Services
                 {
                     while (operatorsRecorded.Count > 0 && Precedence(operatorsRecorded.Peek()) >= Precedence(token[0]))
                     {
+                        if (valuesRecorded.Count < 2)
+                        {
+                            throw new ExpressionException("Invalid expression, it contains either a negative number or wrong expression.");
+                        }
+
                         valuesRecorded.Push(ApplyOperator(operatorsRecorded.Pop(), valuesRecorded.Pop(), valuesRecorded.Pop()));
                     }
                     operatorsRecorded.Push(token[0]);
@@ -46,12 +51,7 @@ namespace ULSolutionSystem.Core.Services
 
         private int Precedence(char op)
         {
-            return op switch
-            {
-                '+' or '-' => 1,
-                '*' or '/' => 2,
-                _ => throw new ArgumentException("Invalid operator found."),
-            };
+            return op == '+' || op == '-' ? 1 : 2;
         }
 
         private double ApplyOperator(char op, double b, double a)

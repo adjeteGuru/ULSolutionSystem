@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Text.RegularExpressions;
 
 namespace ULSolutionSystem.Core.Extensions
 {
@@ -37,20 +36,18 @@ namespace ULSolutionSystem.Core.Extensions
         }
 
         public static bool ExpressionValidator(this string expression)
-        {           
-            if (expression.Contains('(') || expression.Contains(')'))
+        {
+            if (expression.StartsWith("-") && char.IsDigit(expression[1]))
             {
                 return false;
             }
-           
-            string negativeNumberPattern = @"-\d";
-            if (Regex.IsMatch(expression, negativeNumberPattern))
+
+            if (expression.Contains('(') || expression.Contains(')'))
             {
                 return false;
             }
 
             return true;
         }
-
     }
 }

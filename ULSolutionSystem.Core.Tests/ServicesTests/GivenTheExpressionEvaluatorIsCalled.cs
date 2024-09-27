@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using ULSolutionSystem.Core.ExceptionHandler;
 using ULSolutionSystem.Core.Services;
 
 namespace ULSolutionSystem.Core.Tests.ServicesTests
@@ -53,11 +54,27 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
         }
 
         [Fact]
-        public void Evaluate_WhenAWrongParameterIsSuppliedAndTheExpressionIsEvaluated_ThenExpectedErrorIsReturned()
+        public void Evaluate_WhenAValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe5dot5()
+        {
+            var expression = "4+5/2-1";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(5.5);
+        }
+
+        [Fact]
+        public void Evaluate_WhenAComplexValidInputIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultToBe3dot5()
+        {
+            var expression = "3*2-4+5/2-1";
+            var result = systemUnderTest.Evaluate(expression);
+            result.Should().Be(3.5);
+        }
+
+        [Fact]
+        public void Evaluate_WhenAWrongParameterIsSuppliedAndTheExpressionIsEvaluated_ThenExpectedExceptionIsThrown()
         {
             var expression = "wrong input";
             var act = () => systemUnderTest.Evaluate(expression);
-            act.Should().Throw<ArgumentException>("Invalid operator found.");
+            act.Should().Throw<ExpressionException>().And.Message.Should().Be("Invalid expression, it contains either a negative number or wrong expression.");
         }
 
         [Fact]
@@ -81,7 +98,7 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
         {
             var expression = "3*-2";
             var act = () => systemUnderTest.Evaluate(expression);
-            act.Should().Throw<ArgumentException>("Invalid expression, it contains negative number or parathensis.");
+            act.Should().Throw<ExpressionException>().And.Message.Should().Be("Invalid expression, it contains either a negative number or wrong expression.");
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ExpressionException : Exception
     {
-        public ExpressionException() : base("The stack is empty. Operation cannot be performed.")
+        public ExpressionException() : base()
         {
 
         }

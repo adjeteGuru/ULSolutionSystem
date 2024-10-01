@@ -60,7 +60,7 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         [Fact]
         public void ProcessEvaluation_WhenAParameterIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedResultTypeIsReturned()
         {
-            var expression = "1";           
+            var expression = "1";
             var act = systemUnderTest.ProcessEvaluation(expression);
             act.Should().BeOfType<OkObjectResult>();
         }
@@ -78,7 +78,7 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         {
             var exception = new ExpressionException("Invalid expression.");
             mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Throws(exception);
-            
+
             var result = systemUnderTest.ProcessEvaluation("4+5/2-1");
             var objectResult = result as BadRequestObjectResult;
             objectResult.Value.Should().Be($"{exception.Message}");
@@ -89,7 +89,7 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         {
             var expression = "4+5*2";
             mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Returns(14);
-            
+
             var result = systemUnderTest.ProcessEvaluation(expression);
             var objectResult = result as ObjectResult;
             objectResult.StatusCode.Should().Be(200, "14");

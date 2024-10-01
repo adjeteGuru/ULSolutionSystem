@@ -67,7 +67,7 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
             var expression = "3*2-4+5/2-1";
             var result = systemUnderTest.Evaluate(expression);
             result.Should().Be(3.5);
-        }
+        }      
 
         [Fact]
         public void Evaluate_WhenAWrongParameterIsSuppliedAndTheExpressionIsEvaluated_ThenExpectedExceptionIsThrown()
@@ -82,15 +82,23 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
         {
             var expression = "1&2*6";
             var act = () => systemUnderTest.Evaluate(expression);
-            act.Should().Throw<ArgumentException>("Invalid operator found.");
-        }
+            act.Should().Throw<ExpressionException>("Invalid operator found.");
+        }       
 
         [Fact]
         public void Evaluate_WhenAParameterSuppliesCountainsAParenthesis_ThenTheExpectedErrorIsThrown()
         {
             var expression = "(4+5)*2";
-            var act = () => systemUnderTest.Evaluate(expression);
-            act.Should().Throw<ArgumentException>("Invalid expression, it contains negative number or parathensis.");
+            var act = () => systemUnderTest.Evaluate(expression);            
+            act.Should().Throw<ExpressionException>("Invalid expression, it contains negative number or parathensis.");
+        }
+
+        [Fact]
+        public void Evaluate_WhenAParameterSuppliesCountainsANegativeNumber_ThenTheExpectedErrorIsThrown()
+        {
+            var expression = "-4+5*2";
+            var act = () => systemUnderTest.Evaluate(expression);           
+            act.Should().Throw<ExpressionException>("Invalid expression, it contains negative number or parathensis.");
         }
 
         [Fact]
@@ -99,6 +107,6 @@ namespace ULSolutionSystem.Core.Tests.ServicesTests
             var expression = "3*-2";
             var act = () => systemUnderTest.Evaluate(expression);
             act.Should().Throw<ExpressionException>().And.Message.Should().Be("Invalid expression, it contains either a negative number or wrong expression.");
-        }
+        }       
     }
 }

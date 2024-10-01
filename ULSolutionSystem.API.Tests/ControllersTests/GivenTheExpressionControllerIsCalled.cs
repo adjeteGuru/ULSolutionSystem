@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using ULSolutionSystem.API.Controllers;
+using ULSolutionSystem.Core.ExceptionHandler;
 using ULSolutionSystem.Core.Services.Contracts;
 
 namespace ULSolutionSystem.API.Tests.ControllersTests
@@ -75,7 +76,7 @@ namespace ULSolutionSystem.API.Tests.ControllersTests
         [Fact]
         public void ProcessEvaluation_WhenAnInvalidParameterIsSuppliedAndTheExpressionIsEvaluated_ThenTheExpectedErrorMessageIsReturned()
         {
-            var exception = new Exception("Invalid expression.");
+            var exception = new ExpressionException("Invalid expression.");
             mockExpressionEvaluator.Setup(x => x.Evaluate(It.IsAny<string>())).Throws(exception);
             
             var result = systemUnderTest.ProcessEvaluation("4+5/2-1");

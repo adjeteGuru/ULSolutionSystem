@@ -3,15 +3,14 @@
 namespace ULSolutionSystem.Core.Extensions
 {
     public static class ExpressionHandlerExtension
-    {
+    {       
         public static List<string> TokenFormatter(this string expression)
         {
             var tokens = new List<string>();
-            var number = string.Empty;
             var currentToken = new StringBuilder();
 
             foreach (var c in expression)
-            {
+            {               
                 if (char.IsDigit(c) || c == '.')
                 {
                     currentToken.Append(c);
@@ -34,7 +33,7 @@ namespace ULSolutionSystem.Core.Extensions
 
             return tokens;
         }
-
+      
         public static bool ExpressionValidator(this string expression)
         {
             if (expression.StartsWith("-") && char.IsDigit(expression[1]))
@@ -46,7 +45,6 @@ namespace ULSolutionSystem.Core.Extensions
             {
                 return false;
             }
-
             return true;
         }
     }
